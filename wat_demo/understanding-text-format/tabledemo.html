@@ -1,0 +1,30 @@
+<html>
+	<head>
+	</head>
+	<body>
+		helloworld
+	</body>
+	<script>
+var memory = new WebAssembly.Memory({initial:1});
+
+
+
+fetchAndInstantiate('tabledemo.wasm').then(function(instance) {
+  console.log(instance.exports.callByIndex(0)); // 返回 42
+  console.log(instance.exports.callByIndex(1)); // 返回 13
+  console.log(instance.exports.callByIndex(2));
+  // 返回一个错误，因为在表格中没有索引值 2
+});
+
+// fetchAndInstantiate() found in wasm-utils.js
+function fetchAndInstantiate(url, importObject) {
+  return fetch(url).then(response =>
+    response.arrayBuffer()
+  ).then(bytes =>
+    WebAssembly.instantiate(bytes, importObject)
+  ).then(results =>
+    results.instance
+  );
+}
+	</script>
+</html>

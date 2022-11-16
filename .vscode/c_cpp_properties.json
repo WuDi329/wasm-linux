@@ -1,0 +1,37 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/wudi/intel/oneapi/vpl/2022.1.0/include",
+                "/home/wudi/intel/oneapi/tbb/2021.6.0/env/../include",
+                "/home/wudi/intel/oneapi/mpi/2021.6.0/include",
+                "/home/wudi/intel/oneapi/mkl/2022.1.0/include",
+                "/home/wudi/intel/oneapi/ipp/2021.6.0/include",
+                "/home/wudi/intel/oneapi/ippcp/2021.6.0/include",
+                "/home/wudi/intel/oneapi/dpl/2021.7.0/linux/include",
+                "/home/wudi/intel/oneapi/dpcpp-ct/2022.1.0/include",
+                "/home/wudi/intel/oneapi/dnnl/2022.1.0/cpu_dpcpp_gpu_dpcpp/include",
+                "/home/wudi/intel/oneapi/dev-utilities/2021.6.0/include",
+                "/home/wudi/intel/oneapi/dal/2021.6.0/include",
+                "/home/wudi/intel/oneapi/ccl/2021.6.0/include/cpu_gpu_dpcpp",
+                "/usr/include/c++/7",
+                "/usr/include/x86_64-linux-gnu/c++/7",
+                "/usr/include/c++/7/backward",
+                "/usr/lib/gcc/x86_64-linux-gnu/7/include",
+                "/usr/local/include",
+                "/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed",
+                "/usr/include/x86_64-linux-gnu",
+                "/home/wudi/Downloads/emsdk/upstream/emscripten/system/include"
+                // "/usr/include/usr/lib/gcc/x86"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}

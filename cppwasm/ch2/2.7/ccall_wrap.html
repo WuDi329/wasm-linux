@@ -1,0 +1,23 @@
+<script>
+Module = {};
+Module.onRuntimeInitialized = function() {
+    var result = Module.ccall('add', 'number', ['number', 'number'], [13.0, 42]);
+    console.log(result)
+    var str = 'The answer is:42';
+	Module.ccall('print_string', 'null', ['string'], [str]);
+
+    var count = 50;
+	var buf = new ArrayBuffer(count * 4);
+	var i8 = new Uint8Array(buf);
+	var i32 = new Int32Array(buf);
+	for (var i = 0; i < count; i++){
+		i32[i] = i + 1;
+	}
+	result = Module.ccall('sum', 'number', ['array', 'number'], [i8, count]);
+    console.log(result)
+
+    //ccall_wrap.html
+	console.log(Module.ccall('get_string', 'string'));
+}
+</script>
+<script src="ccall_wrap.js"></script>

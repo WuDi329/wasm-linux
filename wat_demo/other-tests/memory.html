@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple template</title>
+  </head>
+  <body>
+    helloworld
+  </body>
+  <script>
+      //这些页面的大小固定为 64KB。这意味着上述内存实例的初始大小为 640KB，最大大小为 6.4MB。
+    var memory = new WebAssembly.Memory({initial:10, maximum:100});
+    WebAssembly.instantiateStreaming(fetch("memory.wasm"), { js: { mem: memory } })
+      .then(obj => {
+        const summands = new Uint32Array(memory.buffer);
+        for (let i = 0; i < 10; i++) {
+          summands[i] = i;
+        }
+        const sum = obj.instance.exports.accumulate(0, 10);
+        console.log(sum);
+      });
+  </script>
+</html>

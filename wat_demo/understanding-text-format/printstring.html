@@ -1,0 +1,35 @@
+<html>
+	<head>
+	</head>
+	<body>
+		helloworld
+	</body>
+	<script>
+var memory = new WebAssembly.Memory({initial:1});
+
+
+
+consoleLogString = function (offset, length) {
+  var bytes = new Uint8Array(memory.buffer, offset, length);
+  var string = new TextDecoder('utf8').decode(bytes);
+  console.log(string);
+}
+
+var importObject = { console: { log: consoleLogString }, js: { mem: memory } };
+
+fetchAndInstantiate('printstring.wasm', importObject).then(function(instance) {
+  instance.exports.writeHi();
+});
+
+// fetchAndInstantiate() found in wasm-utils.js
+function fetchAndInstantiate(url, importObject) {
+  return fetch(url).then(response =>
+    response.arrayBuffer()
+  ).then(bytes =>
+    WebAssembly.instantiate(bytes, importObject)
+  ).then(results =>
+    results.instance
+  );
+}
+	</script>
+</html>

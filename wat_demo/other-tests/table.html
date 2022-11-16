@@ -1,0 +1,32 @@
+<html>
+	<head>
+	</head>
+	<body>
+		helloworld
+	</body>
+	<script>
+var otherTable = new WebAssembly.Table({ element: "anyfunc", initial: 2 });
+
+fetchAndInstantiate('table.wasm').then(function(instance) {
+  var tbl = instance.exports.tbl;
+  console.log(tbl.get(0).name);  // 13
+  console.log(tbl.get(1).name);  // 42
+  otherTable.set(0,tbl.get(0));
+  otherTable.set(1,tbl.get(1));
+  console.log(otherTable.get(0)());
+  console.log(otherTable.get(1)());
+  console.log(console.log)
+});
+
+// fetchAndInstantiate() found in wasm-utils.js
+function fetchAndInstantiate(url, importObject) {
+  return fetch(url).then(response =>
+    response.arrayBuffer()
+  ).then(bytes =>
+    WebAssembly.instantiate(bytes, importObject)
+  ).then(results =>
+    results.instance
+  );
+}
+	</script>
+</html>
